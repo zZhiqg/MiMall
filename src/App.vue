@@ -5,27 +5,24 @@
 </template>
 
 <script>
-import storage from './storage/index.js'
+// import storage from './storage/index.js'
 // import axios from 'axios'
 // import jsonp from 'jsonp'
 export default {
-  name: 'App',
-  components: {
-    
+  name: "App",
+  components: {},
+  data() {
+    return {
+      res:{}
+    };
   },
-  data(){
-    return{
-      
-    }
+  mounted() {
+    //本地加载请求静态json文件的形式
+    this.axios.get('/mock/user/login.json').then((res)=>{
+      this.res = res;
+    });
   },
-  mounted(){
-    // storage.setItem('a',1);
-    // storage.setItem('abc',{a:1},'user');
-      // storage.clear('age','user');
-      storage.clear('sdf');
-    
-  }
-}
+};
 </script>
 
 <style>
