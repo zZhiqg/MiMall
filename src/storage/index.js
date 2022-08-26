@@ -29,6 +29,7 @@ export default {
     },
     clear(key, module_name) {
         if (module_name) {
+            if (!val[module_name]) return;
             let val = this.getItem(module_name)
             delete val[key]
             this.setItem(module_name, val)
