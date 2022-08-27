@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang ="scss">
+/* 大致来说base.scss和mixin.scss的区别就在于base里单纯的写的就是样式，而mixin里写的是混合函数的样式 */
 @import '../assets/scss/base.scss';
 @import '../assets/scss/mixin.scss';
 .header {
