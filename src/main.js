@@ -3,6 +3,12 @@ import router from './router'
 import App from './App.vue'
 import axios from 'axios'
 // import env from './env'
+//mock开关
+const mock = true;
+if (mock) {
+    require('./mock/api');
+}
+
 
 //生产环境的提示
 Vue.config.productionTip = false
