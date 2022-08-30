@@ -9,7 +9,7 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;" v-if="username">{{username}}</a>
+          <a href="javascript:;" v-if="username">{{ username }}</a>
           <a href="javascript:;" v-if="!username" @click="login">登录</a>
           <a href="javascript:;" v-if="username">我的订单</a>
           <!-- <a href="javascript:;">注册</a> -->
@@ -38,8 +38,8 @@
                     <div class="pro-img">
                       <img :src="item.mainImage" :alt="item.subtitle" />
                     </div>
-                    <div class="pro-name">{{item.name}}</div>
-                    <div class="pro-price">{{item.price | currency}}</div>
+                    <div class="pro-name">{{ item.name }}</div>
+                    <div class="pro-price">{{ item.price | currency }}</div>
                   </a>
                 </li>
               </ul>
@@ -133,37 +133,39 @@ export default {
   },
 
   // 过滤器函数，在一个 | 后面就可以触发
-  filters:{
-    currency(val){
-      if(!val){
-        return '0.00';
+  filters: {
+    currency(val) {
+      if (!val) {
+        return "0.00";
       }
-      return '￥'+val.toFixed(2)+'元'; 
-    }
+      return "￥" + val.toFixed(2) + "元";
+    },
   },
   mounted() {
     this.getProductList();
   },
   methods: {
-    login(){
-      this.$router.push('/login');
+    login() {
+      this.$router.push("/login");
     },
     getProductList() {
       this.axios
         .get("/products", {
           params: {
             categoryId: "100012",
-            // pageSize:6
+            pageSize: 6,
           },
         })
         .then((res) => {
-          if (res.list.length > 6) {
-            this.phoneList = res.list.slice(0, 6);
-          }
+          // 如果没有上面那个pagesSize就用下面这个进行切割出6条
+          // if (res.list.length > 6) {
+          // this.phoneList = res.list.slice(0, 6);
+          // }
+          this.phoneList = res.list;
         });
     },
-    goToCart(){
-      this.$router.push('/cart');
+    goToCart() {
+      this.$router.push("/cart");
     },
   },
 };
