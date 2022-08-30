@@ -49,7 +49,7 @@ export default {
         }
         .icon-15day{
             @include bgImg(20px,20px,'../assets/imgs/icon-15day.png');
-        }
+        } 
         .icon-post{
             @include bgImg(20px,20px,'../assets/imgs/icon-post.png');
         }
