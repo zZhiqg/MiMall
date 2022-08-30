@@ -4,7 +4,7 @@ import App from './App.vue'
 import axios from 'axios'
 // import env from './env'
 //mock开关
-const mock = true;
+const mock = false;
 if (mock) {
     require('./mock/api');
 }
@@ -13,8 +13,8 @@ if (mock) {
 //生产环境的提示
 Vue.config.productionTip = false
     // 根据前端的跨域方式做调整  /a/b : /api/a/b => /a/b
-axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5dc7afee2b69d9223b633cbb/mimall';
-// axios.defaults.baseURL = '/api';
+    // axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5dc7afee2b69d9223b633cbb/mimall';
+axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
 //根据环境变量获取不同的请求地址
 // axios.defaults.baseURL = env.baseURL;
