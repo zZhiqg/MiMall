@@ -252,6 +252,7 @@ export default {
             }
           }
           .children {
+            background-color: #ffffff;
             position: absolute;
             top: 112px;
             left: 0;
