@@ -1,8 +1,40 @@
 .modal {
+    z-index: 10;
     @include position(fixed);
     .mask {
         @include position(fixed);
         background-color: $colorI;
         opacity: 0.5;
+    }
+    .modal-dialog {
+        @include position(absolute, 40%, 50%, 660px, auto);
+        background-color: $colorG;
+        //居中的
+        transform: translate(-50%, -50%);
+        .modal-header {
+            height: 60px;
+            background-color: $colorJ;
+            padding: 0 25px;
+            line-height: 60px;
+            font-size: $fontI;
+            .icon-close {
+                @include positionImg(absolute, 23px, 25px, 14px, 14px, '../assets/imgs/icon-close.png');
+                &:hover {
+                    transition: transform .3s;
+                    //放大效果
+                    transform: scale(1.5);
+                }
+            }
+        }
+        .modal-body {
+            padding: 42px 40px 50px;
+            font-size: 14px;
+        }
+        .modal-footer {
+            height: 82px;
+            line-height: 82px;
+            text-align: center;
+            background-color: $colorJ;
+        }
     }
 }
