@@ -66,36 +66,46 @@
           <img src="/imgs/banner-1.png" alt="" />
         </a>
       </div>
-      
     </div>
     <div class="product-box">
-        <div class="container">
-          <h2>手机</h2>
-          <div class="wrapper">
-            <div class="banner-left">
-              <a href="/#/product/35">
-                <img src="/imgs/mix-alpha.jpg" alt="" />
-              </a>
-            </div>
-            <div class="list-box">
-              <div class="list" v-for="(arr, i) in phoneList" v-bind:key="i">
-                <div class="item" v-for="(item, j) in arr" v-bind:key="j">
-                  <span :class="{'new-pro':j%2==0}">新品</span>
-                  <div class="item-img">
-                    <img :src="item.mainImage" alt="" />
-                  </div>
-                  <div class="item-info">
-                    <h3>{{item.name}}</h3>
-                    <p>{{item.subtitle}}</p>
-                    <p class="price">{{item.price}}元</p>
-                  </div>
+      <div class="container">
+        <h2>手机</h2>
+        <div class="wrapper">
+          <div class="banner-left">
+            <a href="/#/product/35">
+              <img src="/imgs/mix-alpha.jpg" alt="" />
+            </a>
+          </div>
+          <div class="list-box">
+            <div class="list" v-for="(arr, i) in phoneList" v-bind:key="i">
+              <div class="item" v-for="(item, j) in arr" v-bind:key="j">
+                <span :class="{ 'new-pro': j % 2 == 0 }">新品</span>
+                <div class="item-img">
+                  <img :src="item.mainImage" alt="" />
+                </div>
+                <div class="item-info">
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.subtitle }}</p>
+                  <p class="price">{{ item.price }}元</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     <service-bar></service-bar>
+    <modal
+      title="提示"
+      sureText="查看购物车"
+      btnType="1"
+      modalType="middle"
+      v-bind:showModal="true"
+    >
+      <template slot="body">
+        <p>商品添加成功！！</p>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -103,9 +113,10 @@
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import ServiceBar from "../components/ServiceBar.vue";
+import Modal from "../components/Modal.vue";
 export default {
   name: "index",
-  components: { Swiper, SwiperSlide, ServiceBar },
+  components: { Swiper, SwiperSlide, ServiceBar, Modal },
   directives: {
     swiper: directive,
   },
@@ -207,16 +218,19 @@ export default {
     this.init();
   },
   methods: {
-    init(){
-       this.axios.get('/products',{
-        params:{
-          categoryId:100012,
-          pageSize:8,
-        }
-       }).then((res)=>{
-        this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)] 
-       })
-    }
+    init() {
+      this.axios
+        .get("/products", {
+          params: {
+            categoryId: 100012,
+            pageSize: 14,
+          },
+        })
+        .then((res) => {
+          res.list = res.list.slice(6, 14);
+          this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
+        });
+    },
   },
 };
 </script>
@@ -352,10 +366,9 @@ export default {
               line-height: 24px;
               color: #ffffff;
               font-size: 14px;
-              background-color: #E82626;
-              &.new-pro{
-                background-color: #7ECF68;
-                
+              background-color: #e82626;
+              &.new-pro {
+                background-color: #7ecf68;
               }
               // &.kill-pro{
               //   background-color: #E82626;
