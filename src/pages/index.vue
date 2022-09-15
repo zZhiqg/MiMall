@@ -105,7 +105,7 @@
       @cancel="showModal = false"
     >
       <template slot="body">
-        <p>商品添加成功！！</p>
+        <p>商品添加成功！</p>
       </template>
     </modal>
   </div>
